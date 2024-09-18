@@ -1,0 +1,45 @@
+{
+  "name": "react-native-pip-mode",
+  "version": "0.1.0",
+  "description": "native module to enable user to use device pip mode",
+  "source": "./src/index.tsx",
+  "main": "./src/index.tsx",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.tsx",
+      "require": "./src/index.tsx"
+    }
+  },
+  "scripts": {},
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/athaljen/react-native-pip-mode.git"
+  },
+  "author": "athaljen <athaljen@gmail.com> (https://github.com/athaljen)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/athaljen/react-native-pip-mode/issues"
+  },
+  "homepage": "https://github.com/athaljen/react-native-pip-mode#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  }
+}
