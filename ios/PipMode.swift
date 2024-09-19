@@ -27,4 +27,13 @@ class PipMode: NSObject {
             reject("E_UNSUPPORTED", "PiP is only supported on iOS 9.0 and later.", nil)
         }
     }
+
+    @objc
+    func isPipSupported(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        if #available(iOS 9.0, *) {
+            resolve(true)
+        } else {
+            resolve(false)
+        }
+    }
 }

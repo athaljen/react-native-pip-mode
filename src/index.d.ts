@@ -1,17 +1,14 @@
 declare module 'react-native-pip-mode' {
   interface PipModeModule {
     /**
-     * @android
      * Check if PiP mode is supported.
-     * - On Android, this returns a Promise that resolves to a boolean indicating whether PiP is supported.
-     * - On iOS, this returns a Promise that resolves to `false`, since PiP is not supported.
      */
     isPipSupported(): Promise<boolean | undefined>;
 
     /**
      * Enter PiP (Picture-in-Picture) mode.
      * - This function is supported on Android only.
-     * - On iOS, it does nothing (PiP is not supported).
+     * - On iOS, it does nothing (PiP is only for AV Player).
      */
     enterPipMode(): Promise<void>;
 

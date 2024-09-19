@@ -20,9 +20,8 @@ class PipModeModule(reactContext: ReactApplicationContext) :
         return NAME
     }
 
-    // Method to enter Picture-in-Picture mode
     @ReactMethod
-    fun enterPipMode(promise: Promise) {
+    fun enterPipMode(width: Int, height: Int, promise: Promise) {
         val activity: Activity? = currentActivity
 
         if (activity == null) {
@@ -31,7 +30,12 @@ class PipModeModule(reactContext: ReactApplicationContext) :
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val aspectRatio = Rational(9, 16) // Set the desired aspect ratio for PiP mode
+            if (width <= 0 || height <= 0) {
+                promise.reject("E_INVALID_RATIO", "Width and height must be positive values.")
+                return
+            }
+
+            val aspectRatio = Rational(width, height) // Set the desired aspect ratio for PiP mode
             val pipBuilder = PictureInPictureParams.Builder()
                 .setAspectRatio(aspectRatio)
 
