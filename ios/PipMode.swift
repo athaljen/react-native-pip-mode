@@ -4,13 +4,16 @@ import React
 @objc(PipMode)
 class PipMode: NSObject {
     var pipController: AVPictureInPictureController?
+    @objc
+    static func requiresMainQueueSetup() ->Bool{
+      return true
+    }
 
     @objc
-    func startPiPMode(_ callback: @escaping RCTResponseSenderBlock) {
-        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController,
-              let playerViewController = rootViewController.presentedViewController as? AVPlayerViewController,
+    func enterPipMode(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        guard let playerViewController = UIApplication.shared.windows.first?.rootViewController?.presentedViewController as? AVPlayerViewController,
               let player = playerViewController.player else {
-            callback(["Error: No player view controller available."])
+            reject("E_NO_PLAYER", "No player view controller available.", nil)
             return
         }
 
@@ -19,9 +22,9 @@ class PipMode: NSObject {
             let pipController = AVPictureInPictureController(playerLayer: playerLayer)
             pipController?.startPictureInPicture()
             self.pipController = pipController
-            callback([NSNull(), "PiP mode started."])
+            resolve("PiP mode started.")
         } else {
-            callback(["Error: PiP is only supported on iOS 9.0 and later."])
+            reject("E_UNSUPPORTED", "PiP is only supported on iOS 9.0 and later.", nil)
         }
     }
 }
