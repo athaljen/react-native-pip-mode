@@ -1,33 +1,45 @@
 # react-native-pip-mode
 
-native module to enable user to use device pip mode
+A native module to enable Picture-in-Picture (PiP) mode in React Native applications. This module allows users to check if PiP mode is supported on their device and enter PiP mode, with Android support for app-level PiP functionality.
 
 ## Installation
-
-```sh
+#### npm
+```bash
 npm install react-native-pip-mode
+```
+#### Yarn
+```bash
+yarn add react-native-pip-mode
 ```
 
 ## Usage
 
+```javascript
+import PipMode from 'react-native-pip-mode';
 
-```js
-import { multiply } from 'react-native-pip-mode';
+// Check if PiP is supported on the device
+PipMode.isPipSupported().then((isSupported) => {
+  console.log('Is PiP supported?', isSupported);
+});
 
-// ...
+// Enter Picture-in-Picture mode (Android only)
+PipMode.enterPipMode().then(() => {
+console.log('Entered PiP mode');
+});
 
-const result = await multiply(3, 7);
+
+// Check if the app is currently in PiP mode (Android Only)
+PipMode.isInPipMode().then((isInPip) => {
+console.log('Is in PiP mode?', isInPip);
+});
 ```
 
+Note: On iOS, enterPipMode and isInPipMode are not applicable and will resolve as false. PiP on iOS is restricted to AV Player, Contribution is open.
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+See the contributing guide for information on how to contribute to the project and the development workflow.
 
 ## License
 
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+This project is licensed under the MIT License. See the LICENSE file for details.
